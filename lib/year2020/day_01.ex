@@ -27,7 +27,6 @@ defmodule AdventOfCode.Year2020.Day01 do
   def calc_part_2(inputs) do
     {a, b, c} =
       find_triplet(inputs)
-      |> IO.inspect()
 
     a * b * c
   end

@@ -18,7 +18,7 @@ defmodule AdventOfCode.Year2020.Day01Test do
       inputs = [1721, 979, 366, 299, 675, 1456]
 
       result = Subject.find_triplet(inputs)
-      assert result = {299, 366, 979}
+      assert result == {979, 366, 675}
     end
   end
 
