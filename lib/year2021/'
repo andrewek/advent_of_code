@@ -1,0 +1,36 @@
+defmodule AdventOfCode.Year2021.Day07 do
+  @moduledoc """
+  https://adventofcode.com/2021/day/7
+  """
+
+  def part_1(inputs) do
+    base = base_range(inputs)
+
+    distances =
+      base
+      |> Emum.map(fn({key, _val}) -> {key, sum_distance(inputs, pos)} end)
+  end
+
+  @doc """
+  Build out basic range-holder - this index will just track distances
+  """
+  def base_range(input) do
+    min = Enum.min(input)
+    max = Enum.max(input)
+
+    min..max
+    |> Enum.reduce(%{}, fn(index, acc) -> Map.put(acc, index, 0) end)
+  end
+
+  def sum_distance(inputs, pos) do
+    inputs
+    |> Enum.map(fn(i) -> abs(i - pos) end)
+    |> Enum.sum()
+  end
+
+  def collect_input() do
+    AdventOfCode.InputHelper.input_for(2021, 7)
+    |> String.split(",", trim: true)
+    |> Enum.map(fn(el) -> String.to_integer(el) end)
+  end
+end
