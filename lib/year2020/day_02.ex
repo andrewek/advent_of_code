@@ -24,7 +24,7 @@ defmodule AdventOfCode.Year2020.Day02 do
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2020, 2)
     |> String.split("\n")
-    |> Enum.map(fn(str) -> parse_str(str) end)
+    |> Enum.map(fn str -> parse_str(str) end)
   end
 
   def p1_valid_password?(password_map) do
@@ -38,7 +38,7 @@ defmodule AdventOfCode.Year2020.Day02 do
     char_count =
       password
       |> String.split("")
-      |> Enum.count(fn(el) -> el == character end)
+      |> Enum.count(fn el -> el == character end)
 
     char_count <= max and char_count >= min
   end

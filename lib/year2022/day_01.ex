@@ -20,7 +20,7 @@ defmodule AdventOfCode.Year2022.Day01 do
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2022, 1)
     |> String.split("\n\n")
-    |> Enum.map(fn(el) ->
+    |> Enum.map(fn el ->
       el
       |> String.split("\n")
       |> Enum.map(&String.to_integer/1)
@@ -38,7 +38,7 @@ defmodule AdventOfCode.Year2022.Day01 do
   def calc_part_2(inputs) do
     inputs
     |> Enum.map(&Enum.sum/1)
-    |> Enum.sort(fn(a, b) -> a >= b end)
+    |> Enum.sort(fn a, b -> a >= b end)
     |> Enum.take(3)
     |> Enum.sum()
   end

@@ -16,7 +16,7 @@ defmodule AdventOfCode.Year2020.Day01 do
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2020, 1)
     |> String.split("\n")
-    |> Enum.map(fn(el) -> String.to_integer(el) end)
+    |> Enum.map(fn el -> String.to_integer(el) end)
   end
 
   def calc_part_1(inputs) do
@@ -25,8 +25,7 @@ defmodule AdventOfCode.Year2020.Day01 do
   end
 
   def calc_part_2(inputs) do
-    {a, b, c} =
-      find_triplet(inputs)
+    {a, b, c} = find_triplet(inputs)
 
     a * b * c
   end
@@ -41,7 +40,9 @@ defmodule AdventOfCode.Year2020.Day01 do
     found = find_pair(tail, desired)
 
     case found do
-      :error -> find_triplet(tail)
+      :error ->
+        find_triplet(tail)
+
       {a, b} ->
         {head, a, b}
     end
@@ -58,7 +59,7 @@ defmodule AdventOfCode.Year2020.Day01 do
     head = hd(inputs)
     tail = tl(inputs)
 
-    found = Enum.find(tail, fn(e) -> head + e == desired_sum end)
+    found = Enum.find(tail, fn e -> head + e == desired_sum end)
 
     case found do
       nil -> find_pair(tail, desired_sum)

@@ -18,20 +18,20 @@ defmodule AdventOfCode.Year2021.Day08 do
   def part_1(inputs) do
     counts =
       inputs
-      |> Enum.map(fn(i) -> i.outputs end)
+      |> Enum.map(fn i -> i.outputs end)
       |> Enum.map(&count_digits/1)
 
     counts
-    |> Enum.map(fn(m) -> Enum.reduce(m, 0, fn({_k, v}, acc) -> acc + v end) end)
+    |> Enum.map(fn m -> Enum.reduce(m, 0, fn {_k, v}, acc -> acc + v end) end)
     |> Enum.sum()
   end
 
   def count_digits(row) do
     %{
-      1 => Enum.count(row, fn(el) -> String.length(el) == 2 end),
-      4 => Enum.count(row, fn(el) -> String.length(el) == 4 end),
-      7 => Enum.count(row, fn(el) -> String.length(el) == 3 end),
-      8 => Enum.count(row, fn(el) -> String.length(el) == 7 end)
+      1 => Enum.count(row, fn el -> String.length(el) == 2 end),
+      4 => Enum.count(row, fn el -> String.length(el) == 4 end),
+      7 => Enum.count(row, fn el -> String.length(el) == 3 end),
+      8 => Enum.count(row, fn el -> String.length(el) == 7 end)
     }
   end
 
@@ -96,15 +96,17 @@ defmodule AdventOfCode.Year2021.Day08 do
     key = build_key(input_row)
 
     outputs
-    |> Enum.map(fn(str) -> String.split(str, "", trim: true) |> Enum.map(&String.to_atom/1) |> Enum.sort() end)
-    |> Enum.map(fn(chrs) -> convert_digit(chrs, key) end)
+    |> Enum.map(fn str ->
+      String.split(str, "", trim: true) |> Enum.map(&String.to_atom/1) |> Enum.sort()
+    end)
+    |> Enum.map(fn chrs -> convert_digit(chrs, key) end)
     |> Enum.join()
     |> String.to_integer()
   end
 
   def convert_digit(chars, key) do
     chars
-    |> Enum.map(fn(c) -> Map.get(key, c) end)
+    |> Enum.map(fn c -> Map.get(key, c) end)
     |> Enum.sort()
     |> case do
       [:a, :b, :c, :e, :f, :g] -> 0
@@ -123,8 +125,10 @@ defmodule AdventOfCode.Year2021.Day08 do
   def build_key(%{inputs: inputs, outputs: outputs}) do
     # Get 1-10 from puzzle input, then de-dupe
     all_vals =
-      inputs ++ outputs
-      |> Enum.map(fn(str) -> String.split(str, "", trim: true) |> Enum.map(&String.to_atom/1) |> Enum.sort() end)
+      (inputs ++ outputs)
+      |> Enum.map(fn str ->
+        String.split(str, "", trim: true) |> Enum.map(&String.to_atom/1) |> Enum.sort()
+      end)
       |> Enum.uniq()
 
     frequencies =
@@ -138,20 +142,20 @@ defmodule AdventOfCode.Year2021.Day08 do
     # 1 -> cf - use to get C
     [c] =
       all_vals
-      |> Enum.find(fn(v) -> length(v) == 2 end)
-      |> Enum.reject(fn(v) -> v == f end)
+      |> Enum.find(fn v -> length(v) == 2 end)
+      |> Enum.reject(fn v -> v == f end)
 
     # Use CF to get A
-    [a] = Enum.find(all_vals, fn(v) -> length(v) == 3 end) -- [c, f]
+    [a] = Enum.find(all_vals, fn v -> length(v) == 3 end) -- [c, f]
 
     # 2 - ACDEG, 3 - ACDFG, and 5, ABDFG can be combined w/ ACF to solve for B
     # and E
 
-    fives = Enum.filter(all_vals, fn(a) -> length(a) == 5 end)
+    fives = Enum.filter(all_vals, fn a -> length(a) == 5 end)
 
-    three = Enum.find(fives, fn(v) -> a in v and c in v and f in v end)
-    two = Enum.find(fives, fn(v) -> a in v and c in v and f not in v end)
-    five = Enum.find(fives, fn(v) -> a in v and c not in v and f in v end)
+    three = Enum.find(fives, fn v -> a in v and c in v and f in v end)
+    two = Enum.find(fives, fn v -> a in v and c in v and f not in v end)
+    five = Enum.find(fives, fn v -> a in v and c not in v and f in v end)
 
     [e] = two -- three
     [b] = five -- three
@@ -159,11 +163,12 @@ defmodule AdventOfCode.Year2021.Day08 do
     # AS OF HERE WE HAVE:
     # A, B, C, E, F
 
-    sixes = Enum.filter(all_vals, fn(v) -> length(v) == 6 end)
+    sixes = Enum.filter(all_vals, fn v -> length(v) == 6 end)
     # Solve for G w/ 0 --> ABCEFG
-    zero = Enum.find(sixes, fn(v) ->
-      a in v and b in v and c in v and e in v and f in v
-    end)
+    zero =
+      Enum.find(sixes, fn v ->
+        a in v and b in v and c in v and e in v and f in v
+      end)
 
     [g] = zero -- [a, b, c, e, f]
 
@@ -201,6 +206,6 @@ defmodule AdventOfCode.Year2021.Day08 do
   def process_string(str) do
     str
     |> String.split(" ", trim: true)
-    |> Enum.map(fn(s) -> String.split(s, "", trim: true) |> Enum.sort() |> Enum.join("") end)
+    |> Enum.map(fn s -> String.split(s, "", trim: true) |> Enum.sort() |> Enum.join("") end)
   end
 end

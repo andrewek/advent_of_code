@@ -16,7 +16,7 @@ defmodule AdventOfCode.Year2021.Day11 do
   end
 
   def part_2_step(%{grid: grid} = inputs, count) do
-    if Enum.all?(grid, fn({_k, v}) -> v.energy == 0 end) do
+    if Enum.all?(grid, fn {_k, v} -> v.energy == 0 end) do
       count
     else
       inputs
@@ -46,7 +46,7 @@ defmodule AdventOfCode.Year2021.Day11 do
   def flash_mob(%{grid: grid} = inputs) do
     flashed_coords =
       grid
-      |> Enum.filter(fn({_key, val}) -> val.energy > 9 and !val.flashed end)
+      |> Enum.filter(fn {_key, val} -> val.energy > 9 and !val.flashed end)
 
     if Enum.empty?(flashed_coords) do
       inputs
@@ -60,7 +60,7 @@ defmodule AdventOfCode.Year2021.Day11 do
 
       new_grid =
         adjacent
-        |> Enum.reduce(new_grid, fn(pos, acc) ->
+        |> Enum.reduce(new_grid, fn pos, acc ->
           tmp = new_grid[pos]
           Map.put(acc, pos, %{energy: tmp.energy + 1, flashed: tmp.flashed})
         end)
@@ -87,7 +87,7 @@ defmodule AdventOfCode.Year2021.Day11 do
   def increment_all(%{grid: grid} = inputs) do
     new_grid =
       grid
-      |> Enum.map(fn({coords, octopus}) ->
+      |> Enum.map(fn {coords, octopus} ->
         {coords, %{energy: octopus.energy + 1, flashed: false}}
       end)
       |> Enum.into(%{})
@@ -98,11 +98,11 @@ defmodule AdventOfCode.Year2021.Day11 do
   # Get us ready for the next grid by clearing out flashes and updating the
   # flash count, per pt 1
   def count_and_clear_flashes(%{grid: grid, flash_count: count}) do
-    new_count = Enum.count(grid, fn({_k, g}) -> g.flashed end) + count
+    new_count = Enum.count(grid, fn {_k, g} -> g.flashed end) + count
 
     new_grid =
       grid
-      |> Enum.map(fn({coords, octopus}) ->
+      |> Enum.map(fn {coords, octopus} ->
         if octopus.flashed do
           {coords, %{energy: 0, flashed: false}}
         else

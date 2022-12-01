@@ -10,7 +10,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsssss",
         character: "s",
         min_count: 3,
-        max_count: 6,
+        max_count: 6
       }
 
       assert Subject.parse_str(str) == expected
@@ -24,8 +24,8 @@ defmodule AdventOfCode.Year2020.Day02Test do
           password: "ssdsss",
           character: "s",
           min_count: 3,
-          max_count: 6,
-        },
+          max_count: 6
+        }
       ]
 
       assert Subject.calc_part_1(inputs) == 1
@@ -37,7 +37,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
           password: "ssdsss",
           character: "s",
           min_count: 1,
-          max_count: 2,
+          max_count: 2
         }
       ]
 
@@ -50,13 +50,13 @@ defmodule AdventOfCode.Year2020.Day02Test do
           password: "ssdsss",
           character: "s",
           min_count: 3,
-          max_count: 6,
+          max_count: 6
         },
         %{
           password: "ssdsss",
           character: "s",
           min_count: 1,
-          max_count: 2,
+          max_count: 2
         }
       ]
 
@@ -70,7 +70,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsss",
         character: "s",
         min_count: 3,
-        max_count: 6,
+        max_count: 6
       }
 
       assert Subject.p1_valid_password?(pw)
@@ -81,7 +81,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsss",
         character: "s",
         min_count: 1,
-        max_count: 2,
+        max_count: 2
       }
 
       refute Subject.p1_valid_password?(pw)
@@ -94,7 +94,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsss",
         character: "s",
         min_count: 3,
-        max_count: 6,
+        max_count: 6
       }
 
       assert Subject.p2_valid_password?(pw)
@@ -105,7 +105,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsss",
         character: "s",
         min_count: 1,
-        max_count: 2,
+        max_count: 2
       }
 
       refute Subject.p2_valid_password?(pw)
@@ -116,7 +116,7 @@ defmodule AdventOfCode.Year2020.Day02Test do
         password: "ssdsss",
         character: "j",
         min_count: 3,
-        max_count: 6,
+        max_count: 6
       }
 
       refute Subject.p2_valid_password?(pw)

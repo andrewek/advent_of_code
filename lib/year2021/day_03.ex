@@ -4,16 +4,16 @@ defmodule AdventOfCode.Year2021.Day03 do
   """
 
   def part_01(inputs) do
-    gamma_digits=
+    gamma_digits =
       inputs
-      |> Enum.zip_reduce([], fn(elements, acc) -> [elements | acc] end)
+      |> Enum.zip_reduce([], fn elements, acc -> [elements | acc] end)
       |> Enum.reverse()
       |> Enum.map(&Enum.sum(&1))
-      |> Enum.map(fn(el) -> el / length(inputs) |> round() end)
+      |> Enum.map(fn el -> (el / length(inputs)) |> round() end)
 
     epsilon_digits =
       gamma_digits
-      |> Enum.map(fn(d) -> abs(d - 1) end)
+      |> Enum.map(fn d -> abs(d - 1) end)
 
     gamma_binary = Enum.join(gamma_digits)
     epsilon_binary = Enum.join(epsilon_digits)
@@ -53,7 +53,7 @@ defmodule AdventOfCode.Year2021.Day03 do
 
     filtered =
       inputs
-      |> Enum.filter(fn(i) -> desired_bit == Enum.at(i, position) end)
+      |> Enum.filter(fn i -> desired_bit == Enum.at(i, position) end)
 
     most_common_bits(filtered, position + 1)
   end
@@ -72,14 +72,14 @@ defmodule AdventOfCode.Year2021.Day03 do
 
     filtered =
       inputs
-      |> Enum.filter(fn(i) -> desired_bit == Enum.at(i, position) end)
+      |> Enum.filter(fn i -> desired_bit == Enum.at(i, position) end)
 
     least_common_bits(filtered, position + 1)
   end
 
   def frequencies(inputs, position) do
     inputs
-    |> Enum.map(fn(el) -> Enum.at(el, position) end)
+    |> Enum.map(fn el -> Enum.at(el, position) end)
     |> Enum.frequencies()
   end
 
@@ -104,7 +104,7 @@ defmodule AdventOfCode.Year2021.Day03 do
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2021, 3)
     |> String.split("\n", trim: true)
-    |> Enum.map(fn(el) -> split_and_cast(el) end)
+    |> Enum.map(fn el -> split_and_cast(el) end)
   end
 
   def split_and_cast(str) do
@@ -113,4 +113,3 @@ defmodule AdventOfCode.Year2021.Day03 do
     |> Enum.map(&String.to_integer(&1))
   end
 end
-

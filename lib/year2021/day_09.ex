@@ -38,17 +38,17 @@ defmodule AdventOfCode.Year2021.Day09 do
   def part_1(inputs) do
     inputs
     |> low_points()
-    |> Enum.map(fn({_, v}) -> v + 1 end)
+    |> Enum.map(fn {_, v} -> v + 1 end)
     |> Enum.sum()
   end
 
   def low_points(inputs) do
     inputs
-    |> Enum.filter(fn({{row, col}, height}) ->
+    |> Enum.filter(fn {{row, col}, height} ->
       height < inputs[{row - 1, col}] and
-      height < inputs[{row + 1, col}] and
-      height < inputs[{row, col - 1}] and
-      height < inputs[{row, col + 1}]
+        height < inputs[{row + 1, col}] and
+        height < inputs[{row, col - 1}] and
+        height < inputs[{row, col + 1}]
     end)
   end
 
@@ -56,7 +56,9 @@ defmodule AdventOfCode.Year2021.Day09 do
     lines =
       AdventOfCode.InputHelper.input_for(2021, 9)
       |> String.split("\n", trim: true)
-      |> Enum.map(fn(line) -> String.split(line, "", trim: true) |> Enum.map(&String.to_integer/1) end)
+      |> Enum.map(fn line ->
+        String.split(line, "", trim: true) |> Enum.map(&String.to_integer/1)
+      end)
 
     build_grid(lines)
   end
@@ -64,16 +66,16 @@ defmodule AdventOfCode.Year2021.Day09 do
   # Why hello yes this is gross
   def build_grid(lines) do
     lines
-    |> Enum.with_index(fn(row, row_index) ->
+    |> Enum.with_index(fn row, row_index ->
       {row_index, row}
     end)
-    |> Enum.map(fn({row_index, row}) ->
-      Enum.with_index(row, fn(col, col_index) ->
+    |> Enum.map(fn {row_index, row} ->
+      Enum.with_index(row, fn col, col_index ->
         %{value: col, row: row_index, col: col_index}
       end)
     end)
     |> List.flatten()
-    |> Enum.reduce(%{}, fn(node, accumulator) ->
+    |> Enum.reduce(%{}, fn node, accumulator ->
       Map.put(accumulator, {node.row, node.col}, node.value)
     end)
   end

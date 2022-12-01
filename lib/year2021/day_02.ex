@@ -9,7 +9,7 @@ defmodule AdventOfCode.Year2021.Day02 do
   """
   def part_01(inputs) do
     inputs
-    |> Enum.reduce(%{horizontal: 0, depth: 0}, fn(step, accumulator) ->
+    |> Enum.reduce(%{horizontal: 0, depth: 0}, fn step, accumulator ->
       new_coord(accumulator, step)
     end)
   end
@@ -35,7 +35,7 @@ defmodule AdventOfCode.Year2021.Day02 do
   """
   def part_02(inputs) do
     inputs
-    |> Enum.reduce(%{horizontal: 0, depth: 0, aim: 0}, fn(step, coords) ->
+    |> Enum.reduce(%{horizontal: 0, depth: 0, aim: 0}, fn step, coords ->
       new_aim(coords, step)
     end)
   end
@@ -59,16 +59,17 @@ defmodule AdventOfCode.Year2021.Day02 do
   def new_aim(%{horizontal: h, depth: d, aim: a}, {:forward, amt}) do
     %{
       horizontal: h + amt,
-      depth: d + (a * amt),
-      aim: a,
+      depth: d + a * amt,
+      aim: a
     }
   end
 
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2021, 2)
     |> String.split("\n")
-    |> Enum.map(fn(el) ->
+    |> Enum.map(fn el ->
       [dir, amt] = String.split(el, " ")
+
       {
         String.to_atom(dir),
         String.to_integer(amt)

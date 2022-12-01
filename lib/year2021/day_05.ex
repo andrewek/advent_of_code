@@ -10,7 +10,7 @@ defmodule AdventOfCode.Year2021.Day05 do
     # Get only horizontal and vertical lines
     filtered_inputs =
       inputs
-      |> Enum.filter(fn(%{start: {x1, y1}, finish: {x2, y2}}) -> x1 == x2 or y1 == y2 end)
+      |> Enum.filter(fn %{start: {x1, y1}, finish: {x2, y2}} -> x1 == x2 or y1 == y2 end)
 
     filtered_inputs
     |> Enum.map(&draw_line/1)
@@ -30,13 +30,13 @@ defmodule AdventOfCode.Year2021.Day05 do
   # Vertical line
   def draw_line(%{start: {x1, y1}, finish: {x2, y2}}) when x1 == x2 do
     y1..y2
-    |> Enum.map(fn(y) -> {x1, y} end)
+    |> Enum.map(fn y -> {x1, y} end)
   end
 
   # Horizonal line
   def draw_line(%{start: {x1, y1}, finish: {x2, y2}}) when y1 == y2 do
     x1..x2
-    |> Enum.map(fn(x) -> {x, y1} end)
+    |> Enum.map(fn x -> {x, y1} end)
   end
 
   # Diagonal

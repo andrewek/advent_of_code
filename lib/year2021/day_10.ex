@@ -7,7 +7,7 @@ defmodule AdventOfCode.Year2021.Day10 do
     scores =
       inputs
       |> process_lines()
-      |> Enum.filter(fn(l) -> l.valid and length(l.opening_tags) > 0 end)
+      |> Enum.filter(fn l -> l.valid and length(l.opening_tags) > 0 end)
       |> Enum.map(&score_line/1)
       |> Enum.sort()
 
@@ -21,7 +21,7 @@ defmodule AdventOfCode.Year2021.Day10 do
 
     tags
     |> Enum.map(&p2_score/1)
-    |> Enum.reduce(0, fn(val, acc) ->
+    |> Enum.reduce(0, fn val, acc ->
       IO.inspect({acc, val, acc * 5 + val}, label: "The Score")
       acc * 5 + val
     end)
@@ -44,8 +44,8 @@ defmodule AdventOfCode.Year2021.Day10 do
   def part_1(inputs) do
     inputs
     |> process_lines()
-    |> Enum.filter(fn(a) -> !a.valid end)
-    |> Enum.map(fn(a) -> a.bad_character |> p1_score() end)
+    |> Enum.filter(fn a -> !a.valid end)
+    |> Enum.map(fn a -> a.bad_character |> p1_score() end)
     |> Enum.sum()
   end
 

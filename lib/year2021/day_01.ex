@@ -27,7 +27,7 @@ defmodule AdventOfCode.Year2021.Day01 do
   def part_2(inputs, counter) when length(inputs) >= 4 do
     [a, b, c, d | _rest] = inputs
 
-    if (a + b + c) < (b + c + d) do
+    if a + b + c < b + c + d do
       part_2(tl(inputs), counter + 1)
     else
       part_2(tl(inputs), counter)
@@ -41,6 +41,6 @@ defmodule AdventOfCode.Year2021.Day01 do
   def collect_input() do
     AdventOfCode.InputHelper.input_for(2021, 1)
     |> String.split("\n")
-    |> Enum.map(fn(el) -> String.to_integer(el) end)
+    |> Enum.map(fn el -> String.to_integer(el) end)
   end
 end

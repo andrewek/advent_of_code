@@ -12,9 +12,9 @@ defmodule AdventOfCode.Year2021.Day04 do
       boards: boards
     } = inputs
 
-    new_boards = Enum.map(boards, fn(b) -> apply_move(b, current_move, moves_completed) end)
+    new_boards = Enum.map(boards, fn b -> apply_move(b, current_move, moves_completed) end)
 
-    winner = Enum.find(new_boards, fn(b) -> score(b, current_move) > 0 end)
+    winner = Enum.find(new_boards, fn b -> score(b, current_move) > 0 end)
 
     if winner do
       {winner, score(winner, current_move)}
@@ -24,11 +24,11 @@ defmodule AdventOfCode.Year2021.Day04 do
   end
 
   def part_02(%{moves: moves, boards: boards} = inputs) when 0 == length(moves) do
-    candidate_boards = Enum.filter(boards, fn(b) -> completed_board?(b) end)
+    candidate_boards = Enum.filter(boards, fn b -> completed_board?(b) end)
 
     last_board =
       candidate_boards
-      |> Enum.max_by(fn(b) -> b.completed_at end)
+      |> Enum.max_by(fn b -> b.completed_at end)
 
     {last_board, score(last_board, last_board.completed_with)}
   end
@@ -42,7 +42,7 @@ defmodule AdventOfCode.Year2021.Day04 do
 
     new_boards =
       boards
-      |> Enum.map(fn(b) -> apply_move(b, current_move, moves_completed) end)
+      |> Enum.map(fn b -> apply_move(b, current_move, moves_completed) end)
 
     part_02(%{
       moves: remaining_moves,
@@ -52,7 +52,7 @@ defmodule AdventOfCode.Year2021.Day04 do
   end
 
   def apply_move(%{cells: cells, completed_at: nil} = board, last_move, turn) do
-    candidate_index = Enum.find_index(cells, fn({num, _val}) -> num == last_move end)
+    candidate_index = Enum.find_index(cells, fn {num, _val} -> num == last_move end)
 
     if is_nil(candidate_index) do
       board
@@ -93,18 +93,18 @@ defmodule AdventOfCode.Year2021.Day04 do
 
   def row_win?(cells) do
     row_1_wins?(cells) or
-    row_2_wins?(cells) or
-    row_3_wins?(cells) or
-    row_4_wins?(cells) or
-    row_5_wins?(cells)
+      row_2_wins?(cells) or
+      row_3_wins?(cells) or
+      row_4_wins?(cells) or
+      row_5_wins?(cells)
   end
 
   def col_win?(cells) do
     col_1_wins?(cells) or
-    col_2_wins?(cells) or
-    col_3_wins?(cells) or
-    col_4_wins?(cells) or
-    col_5_wins?(cells)
+      col_2_wins?(cells) or
+      col_3_wins?(cells) or
+      col_4_wins?(cells) or
+      col_5_wins?(cells)
   end
 
   def row_1_wins?(cells) do
