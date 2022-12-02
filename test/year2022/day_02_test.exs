@@ -2,7 +2,6 @@ defmodule AdventOfCode.Year2022.Day02Test do
   alias AdventOfCode.Year2022.Day02, as: Subject
   use ExUnit.Case
 
-
   describe "transform_line_pt_1/1" do
     test "succeeds" do
       assert Subject.transform_line_pt_1("A X") == {:rock, :rock}
@@ -18,7 +17,7 @@ defmodule AdventOfCode.Year2022.Day02Test do
   end
 
   describe "points_for/1" do
-    test"calculates" do
+    test "calculates" do
       # Draw + 1 point
       assert Subject.points_for({:rock, :rock}) == 4
 

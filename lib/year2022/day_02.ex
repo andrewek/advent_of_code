@@ -88,11 +88,9 @@ defmodule AdventOfCode.Year2022.Day02 do
       "A X" -> {:rock, :scissors}
       "A Y" -> {:rock, :rock}
       "A Z" -> {:rock, :paper}
-
       "B X" -> {:paper, :rock}
       "B Y" -> {:paper, :paper}
       "B Z" -> {:paper, :scissors}
-
       "C X" -> {:scissors, :paper}
       "C Y" -> {:scissors, :scissors}
       "C Z" -> {:scissors, :rock}
@@ -111,4 +109,3 @@ defmodule AdventOfCode.Year2022.Day02 do
     :scissors
   end
 end
-
