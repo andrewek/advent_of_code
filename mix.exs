@@ -21,7 +21,8 @@ defmodule AdventOfCode.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:ex_unit_notifier, "~> 1.2", only: :test}
     ]
   end
 end
