@@ -1,6 +1,6 @@
 # Advent of Code - 2020
 
-**TODO: Add description**
+Advent of Code puzzles
 
 ## Installation
 
@@ -9,4 +9,4 @@
 
 ## Running Code
 
-`mix test` to run tests
+`mix test` to run tests or `mix test.watch` to run in watch mode.
