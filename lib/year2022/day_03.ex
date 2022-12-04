@@ -82,7 +82,7 @@ defmodule AdventOfCode.Year2022.Day03 do
   def score_chunk(chunks) do
     chunks
     |> Enum.map(&transform_subchunk/1)
-    |> Enum.reduce(fn(el, acc) -> MapSet.intersection(el, acc) end)
+    |> Enum.reduce(fn el, acc -> MapSet.intersection(el, acc) end)
     |> MapSet.to_list()
     |> Enum.map(&priority_of/1)
     |> Enum.sum()
@@ -121,7 +121,7 @@ defmodule AdventOfCode.Year2022.Day03 do
   def split_knapsack(line) do
     line
     |> String.split("", trim: true)
-    |> then(fn(list) ->
+    |> then(fn list ->
       split_pt = div(length(list), 2)
 
       [
