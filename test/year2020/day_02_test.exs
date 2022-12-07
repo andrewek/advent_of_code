@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2020.Day02Test do
   alias AdventOfCode.Year2020.Day02, as: Subject
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   describe "parse_str/1" do
     test "parses" do

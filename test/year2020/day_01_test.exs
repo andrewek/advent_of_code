@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2020.Day01Test do
   alias AdventOfCode.Year2020.Day01, as: Subject
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   describe "calc_part_1/1" do
     test "finds the product with a small list" do

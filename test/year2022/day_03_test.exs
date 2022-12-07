@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2022.Day03Test do
   alias AdventOfCode.Year2022.Day03, as: Subject
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   @inputs [
     "vJrwpWtwJgWrhcsFMMfFFhFp",

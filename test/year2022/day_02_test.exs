@@ -1,6 +1,6 @@
 defmodule AdventOfCode.Year2022.Day02Test do
   alias AdventOfCode.Year2022.Day02, as: Subject
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   describe "transform_line_pt_1/1" do
     test "succeeds" do
