@@ -40,10 +40,10 @@ defmodule AdventOfCode.Year2022.Day05Test do
       next_board = Subject.perform_move(board, move)
 
       assert next_board == %{
-        1 => ["D", "N", "Z"],
-        2 => ["C", "M"],
-        3 => ["P"]
-      }
+               1 => ["D", "N", "Z"],
+               2 => ["C", "M"],
+               3 => ["P"]
+             }
     end
   end
 
@@ -54,6 +54,7 @@ defmodule AdventOfCode.Year2022.Day05Test do
         2 => ["D", "C", "M"],
         3 => ["P"]
       }
+
       assert "NDP" == Subject.result_string(%{board: board})
     end
   end
@@ -63,30 +64,30 @@ defmodule AdventOfCode.Year2022.Day05Test do
       %{move_list: move_list} = Subject.parse_input(@test_input)
 
       assert move_list == [
-        %{from: 2, to: 1, count: 1},
-        %{from: 1, to: 3, count: 1},
-        %{from: 1, to: 3, count: 1},
-        %{from: 1, to: 3, count: 1},
-        %{from: 2, to: 1, count: 1},
-        %{from: 2, to: 1, count: 1},
-        %{from: 1, to: 2, count: 1}
-      ]
+               %{from: 2, to: 1, count: 1},
+               %{from: 1, to: 3, count: 1},
+               %{from: 1, to: 3, count: 1},
+               %{from: 1, to: 3, count: 1},
+               %{from: 2, to: 1, count: 1},
+               %{from: 2, to: 1, count: 1},
+               %{from: 1, to: 2, count: 1}
+             ]
     end
 
     test "builds initial board state" do
       %{board: board} = Subject.parse_input(@test_input)
 
       assert board == %{
-        1 => ["N", "Z"],
-        2 => ["D", "C", "M"],
-        3 => ["P"],
-        4 => [],
-        5 => [],
-        6 => [],
-        7 => [],
-        8 => [],
-        9 => [],
-      }
+               1 => ["N", "Z"],
+               2 => ["D", "C", "M"],
+               3 => ["P"],
+               4 => [],
+               5 => [],
+               6 => [],
+               7 => [],
+               8 => [],
+               9 => []
+             }
     end
   end
 
@@ -100,16 +101,16 @@ defmodule AdventOfCode.Year2022.Day05Test do
       """
 
       assert Subject.build_board(input) == %{
-        1 => ["N", "Z"],
-        2 => ["D", "C", "M"],
-        3 => ["P"],
-        4 => [],
-        5 => [],
-        6 => [],
-        7 => [],
-        8 => [],
-        9 => [],
-      }
+               1 => ["N", "Z"],
+               2 => ["D", "C", "M"],
+               3 => ["P"],
+               4 => [],
+               5 => [],
+               6 => [],
+               7 => [],
+               8 => [],
+               9 => []
+             }
     end
 
     test "builds full input" do
@@ -126,21 +127,20 @@ defmodule AdventOfCode.Year2022.Day05Test do
       """
 
       assert Subject.build_board(input) == %{
-        1 => ["B", "S", "J", "Z", "V", "D", "G"],
-        2 => ["P", "V", "G", "M", "S", "Z"],
-        3 => ["F", "Q", "T", "W", "S", "B", "L", "C"],
-        4 => ["Q", "V", "R", "M", "W", "G", "J", "H"],
-        5 => ["D", "M", "F", "N", "S", "L", "C"],
-        6 => ["D", "C", "G", "R"],
-        7 => ["Q", "S", "D", "J", "R", "T", "G", "H"],
-        8 => ["V", "F", "P"],
-        9 => ["J", "T", "S", "R", "D"]
-      }
+               1 => ["B", "S", "J", "Z", "V", "D", "G"],
+               2 => ["P", "V", "G", "M", "S", "Z"],
+               3 => ["F", "Q", "T", "W", "S", "B", "L", "C"],
+               4 => ["Q", "V", "R", "M", "W", "G", "J", "H"],
+               5 => ["D", "M", "F", "N", "S", "L", "C"],
+               6 => ["D", "C", "G", "R"],
+               7 => ["Q", "S", "D", "J", "R", "T", "G", "H"],
+               8 => ["V", "F", "P"],
+               9 => ["J", "T", "S", "R", "D"]
+             }
     end
   end
 
   describe "build_updated_move_list/1" do
-
   end
 
   describe "build_move_list/1" do
@@ -148,22 +148,22 @@ defmodule AdventOfCode.Year2022.Day05Test do
       input = ["move 1 from 2 to 1", "move 2 from 5 to 7"]
 
       assert Subject.build_move_list(input) == [
-        %{
-          from: 2,
-          to: 1,
-          count: 1
-        },
-        %{
-          from: 5,
-          to: 7,
-          count: 1
-        },
-        %{
-          from: 5,
-          to: 7,
-          count: 1
-        }
-      ]
+               %{
+                 from: 2,
+                 to: 1,
+                 count: 1
+               },
+               %{
+                 from: 5,
+                 to: 7,
+                 count: 1
+               },
+               %{
+                 from: 5,
+                 to: 7,
+                 count: 1
+               }
+             ]
     end
   end
 
@@ -171,33 +171,35 @@ defmodule AdventOfCode.Year2022.Day05Test do
     test "transforms one move" do
       input = "move 1 from 2 to 1"
 
-      assert Subject.transform_move(input) == [%{
-        from: 2,
-        count: 1,
-        to: 1
-      }]
+      assert Subject.transform_move(input) == [
+               %{
+                 from: 2,
+                 count: 1,
+                 to: 1
+               }
+             ]
     end
 
     test "transforms many moves" do
       input = "move 3 from 2 to 1"
 
       assert Subject.transform_move(input) == [
-        %{
-          from: 2,
-          to: 1,
-          count: 1
-        },
-        %{
-          from: 2,
-          to: 1,
-          count: 1
-        },
-        %{
-          from: 2,
-          to: 1,
-          count: 1
-        }
-      ]
+               %{
+                 from: 2,
+                 to: 1,
+                 count: 1
+               },
+               %{
+                 from: 2,
+                 to: 1,
+                 count: 1
+               },
+               %{
+                 from: 2,
+                 to: 1,
+                 count: 1
+               }
+             ]
     end
   end
 end

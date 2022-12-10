@@ -40,10 +40,11 @@ defmodule AdventOfCode.Year2022.Day05 do
   end
 
   def result_string(%{board: board}) do
-    string = Enum.reduce(1..9, "", fn(index, acc) ->
-      char = (board[index] || []) |> Enum.at(0) || ""
-      acc <> char
-    end)
+    string =
+      Enum.reduce(1..9, "", fn index, acc ->
+        char = (board[index] || []) |> Enum.at(0) || ""
+        acc <> char
+      end)
 
     String.trim(string)
   end
@@ -96,7 +97,7 @@ defmodule AdventOfCode.Year2022.Day05 do
       str
       |> String.split("\n", trim: true)
       |> Enum.reverse()
-      |> Enum.map(fn(el) -> String.split(el, "", trim: true) end)
+      |> Enum.map(fn el -> String.split(el, "", trim: true) end)
 
     starting_board()
     |> process_board_lines(lines)
@@ -107,13 +108,14 @@ defmodule AdventOfCode.Year2022.Day05 do
   end
 
   def process_board_lines(board, [current_line | rest]) do
-    new_board = Enum.reduce(1..9, board, fn(index, accumulator) ->
-      str_pos = 4 * index - 3
+    new_board =
+      Enum.reduce(1..9, board, fn index, accumulator ->
+        str_pos = 4 * index - 3
 
-      char = Enum.at(current_line, str_pos)
+        char = Enum.at(current_line, str_pos)
 
-      add_box_to_board(accumulator, index, char)
-    end)
+        add_box_to_board(accumulator, index, char)
+      end)
 
     process_board_lines(new_board, rest)
   end
@@ -147,7 +149,7 @@ defmodule AdventOfCode.Year2022.Day05 do
   def add_box_to_board(board, index, boxes) when is_list(boxes) do
     stack = board[index]
 
-    Map.put(board, index, boxes ++ stack  )
+    Map.put(board, index, boxes ++ stack)
   end
 
   def starting_board() do
@@ -195,7 +197,7 @@ defmodule AdventOfCode.Year2022.Day05 do
   end
 
   defp to_list_of_moves({count, from, to}) do
-    Enum.reduce(1..count, [], fn(_el, acc) ->
+    Enum.reduce(1..count, [], fn _el, acc ->
       [%{count: 1, from: from, to: to} | acc]
     end)
   end
