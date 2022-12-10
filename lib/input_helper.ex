@@ -14,7 +14,7 @@ defmodule AdventOfCode.InputHelper do
       constructed_file_name(year, day)
       |> File.read()
 
-    String.trim(input)
+    String.trim_trailing(input)
   end
 
   defp constructed_file_name(year, day) do
