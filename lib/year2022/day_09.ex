@@ -14,7 +14,7 @@ defmodule AdventOfCode.Year2022.Day09 do
     |> Enum.map(&remap_input/1)
     |> build_initial_state()
     |> perform_moves()
-    |> then(fn(state) -> Enum.count(state.tail_moves) end)
+    |> then(fn state -> Enum.count(state.tail_moves) end)
   end
 
   # Find total calories carried by top 3 elves
@@ -23,7 +23,7 @@ defmodule AdventOfCode.Year2022.Day09 do
     |> Enum.map(&remap_input/1)
     |> build_initial_state_2()
     |> perform_moves(&perform_one_move_pt_2/1)
-    |> then(fn(state) -> Enum.count(state.tail_moves) end)
+    |> then(fn state -> Enum.count(state.tail_moves) end)
   end
 
   ############# Process a move #####################
@@ -51,7 +51,12 @@ defmodule AdventOfCode.Year2022.Day09 do
     |> Map.put(:moves, rest)
   end
 
-  def perform_one_move(%{moves: [{dir, count} | rest], head: head, tail: tail, tail_moves: tail_moves}) do
+  def perform_one_move(%{
+        moves: [{dir, count} | rest],
+        head: head,
+        tail: tail,
+        tail_moves: tail_moves
+      }) do
     new_head = move_head(head, dir)
     new_tail = next_tail_coords(new_head, tail)
     new_tail_moves = MapSet.put(tail_moves, new_tail)
@@ -125,11 +130,13 @@ defmodule AdventOfCode.Year2022.Day09 do
   end
 
   # Same column, different row
-  def next_tail_coords({head_x, head_y}, {tail_x, tail_y}) when head_x == tail_x and head_y != tail_y do
+  def next_tail_coords({head_x, head_y}, {tail_x, tail_y})
+      when head_x == tail_x and head_y != tail_y do
     cond do
       # Head and tail are adjacent
       abs(head_y - tail_y) == 1 ->
         {tail_x, tail_y}
+
       # Not adjacent
       true ->
         y_offset = div(head_y - tail_y, 2)
@@ -138,11 +145,13 @@ defmodule AdventOfCode.Year2022.Day09 do
   end
 
   # Same row, different column
-  def next_tail_coords({head_x, head_y}, {tail_x, tail_y}) when head_y == tail_y and head_x != tail_x do
+  def next_tail_coords({head_x, head_y}, {tail_x, tail_y})
+      when head_y == tail_y and head_x != tail_x do
     cond do
       # Head and tail are adjacent
       abs(head_x - tail_x) == 1 ->
         {tail_x, tail_y}
+
       # Not adjacent
       true ->
         x_offset = div(head_x - tail_x, 2)
@@ -198,12 +207,13 @@ defmodule AdventOfCode.Year2022.Day09 do
   def remap_input(str) do
     [dir, count_str] = String.split(str)
 
-    direction = case dir do
-      "R" -> :right
-      "U" -> :up
-      "L" -> :left
-      "D" -> :down
-    end
+    direction =
+      case dir do
+        "R" -> :right
+        "U" -> :up
+        "L" -> :left
+        "D" -> :down
+      end
 
     count = String.to_integer(count_str)
 

@@ -28,9 +28,9 @@ defmodule AdventOfCode.Year2022.Day09Test do
   describe "calc_part_1/1" do
     test "works" do
       assert 13 ==
-        @inputs
-        |> String.split("\n", trim: true)
-        |> Subject.calc_part_1()
+               @inputs
+               |> String.split("\n", trim: true)
+               |> Subject.calc_part_1()
     end
   end
 
@@ -71,7 +71,9 @@ defmodule AdventOfCode.Year2022.Day09Test do
       assert result.head == {4, 4}
       assert result.tail == {4, 3}
       assert result.moves == []
-      assert result.tail_moves == MapSet.new([{0,0}, {1, 0}, {2,0}, {3,0}, {4, 1}, {4, 2}, {4, 3}])
+
+      assert result.tail_moves ==
+               MapSet.new([{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 1}, {4, 2}, {4, 3}])
     end
   end
 
@@ -150,13 +152,13 @@ defmodule AdventOfCode.Year2022.Day09Test do
 
   describe "next_tail_coords/2" do
     test "adjecent" do
-      assert {0, 1} = Subject.next_tail_coords({0,0}, {0,1})
-      assert {0, -1} = Subject.next_tail_coords({0,0}, {0, -1})
-      assert {1, 0} = Subject.next_tail_coords({0,0}, {1,0})
-      assert {1, 1} = Subject.next_tail_coords({0,0}, {1,1})
-      assert {1, -1} = Subject.next_tail_coords({0,0}, {1,-1})
-      assert {-1, -1} = Subject.next_tail_coords({0,0}, {-1, -1})
-      assert {-1, 0} = Subject.next_tail_coords({0,0}, {-1 ,0})
+      assert {0, 1} = Subject.next_tail_coords({0, 0}, {0, 1})
+      assert {0, -1} = Subject.next_tail_coords({0, 0}, {0, -1})
+      assert {1, 0} = Subject.next_tail_coords({0, 0}, {1, 0})
+      assert {1, 1} = Subject.next_tail_coords({0, 0}, {1, 1})
+      assert {1, -1} = Subject.next_tail_coords({0, 0}, {1, -1})
+      assert {-1, -1} = Subject.next_tail_coords({0, 0}, {-1, -1})
+      assert {-1, 0} = Subject.next_tail_coords({0, 0}, {-1, 0})
       assert {-1, 1} = Subject.next_tail_coords({0, 0}, {-1, 1})
     end
 
@@ -211,20 +213,20 @@ defmodule AdventOfCode.Year2022.Day09Test do
       result = Subject.build_initial_state(moves)
 
       assert result == %{
-        head: {0, 0},
-        tail: {0, 0},
-        tail_moves: MapSet.new([{0, 0}]),
-        moves: [
-          {:right, 4},
-          {:up, 4},
-          {:left, 3},
-          {:down, 1},
-          {:right, 4},
-          {:down, 1},
-          {:left, 5},
-          {:right, 2}
-        ]
-      }
+               head: {0, 0},
+               tail: {0, 0},
+               tail_moves: MapSet.new([{0, 0}]),
+               moves: [
+                 {:right, 4},
+                 {:up, 4},
+                 {:left, 3},
+                 {:down, 1},
+                 {:right, 4},
+                 {:down, 1},
+                 {:left, 5},
+                 {:right, 2}
+               ]
+             }
     end
   end
 
