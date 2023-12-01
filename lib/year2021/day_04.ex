@@ -23,7 +23,7 @@ defmodule AdventOfCode.Year2021.Day04 do
     end
   end
 
-  def part_02(%{moves: moves, boards: boards} = inputs) when 0 == length(moves) do
+  def part_02(%{moves: moves, boards: boards} = _inputs) when 0 == length(moves) do
     candidate_boards = Enum.filter(boards, fn b -> completed_board?(b) end)
 
     last_board =
