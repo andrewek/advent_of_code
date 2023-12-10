@@ -21,14 +21,14 @@ defmodule AdventOfCode.Year2023.Day04Test do
       input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
 
       assert %{
-        raw_input: "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53",
-        card_number: 1,
-        winning_numbers: MapSet.new([41, 48, 83, 86, 17]),
-        ticket_numbers: MapSet.new([83, 86, 6, 31, 17, 9, 48, 53]),
-        intersection: MapSet.new([17, 48, 83, 86]),
-        match_count: 4,
-        score: 8
-      } == Subject.parse_line(input)
+               raw_input: "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53",
+               card_number: 1,
+               winning_numbers: MapSet.new([41, 48, 83, 86, 17]),
+               ticket_numbers: MapSet.new([83, 86, 6, 31, 17, 9, 48, 53]),
+               intersection: MapSet.new([17, 48, 83, 86]),
+               match_count: 4,
+               score: 8
+             } == Subject.parse_line(input)
     end
   end
 
@@ -119,11 +119,11 @@ defmodule AdventOfCode.Year2023.Day04Test do
 
     test "it populates a bunch" do
       assert %{
-        1 => 1,
-        2 => 1,
-        3 => 1,
-        4 => 1
-      } == Subject.build_counter(4)
+               1 => 1,
+               2 => 1,
+               3 => 1,
+               4 => 1
+             } == Subject.build_counter(4)
     end
   end
 end

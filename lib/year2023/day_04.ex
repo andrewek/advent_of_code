@@ -63,7 +63,7 @@ defmodule AdventOfCode.Year2023.Day04 do
     indices_to_increment = (current_index + 1)..(current_index + match_count)
 
     indices_to_increment
-    |> Enum.reduce(counter, fn(idx, accumulator) ->
+    |> Enum.reduce(counter, fn idx, accumulator ->
       current_count = accumulator[idx]
       new_count = current_count + card_count
       Map.put(accumulator, idx, new_count)
@@ -138,13 +138,13 @@ defmodule AdventOfCode.Year2023.Day04 do
   end
 
   def build_counter(count) when count >= 1 do
-    Enum.reduce(1..count, %{}, fn(idx, accumulator) ->
+    Enum.reduce(1..count, %{}, fn idx, accumulator ->
       Map.put(accumulator, idx, 1)
     end)
   end
 
   def total_card_count(counter) do
     counter
-    |> Enum.reduce(0, fn({_, count}, sum) -> sum + count end)
+    |> Enum.reduce(0, fn {_, count}, sum -> sum + count end)
   end
 end
